@@ -5,8 +5,9 @@ using namespace std;
 template <typename T>
 class DbList
 {
-private:
+public:
 	class	Node;
+private:
 	Node	*_head = NULL;
 public:
 	class Node
@@ -15,28 +16,28 @@ public:
 		T		value;
 		Node	*previous = NULL;
 		Node	*next = NULL;
-	}
-	DbList(void);
-	~DbList();
+	};
+	DbList(void){}
+	~DbList(){}
 
 	void dblistadd_front(T value)
 	{
 		if (_head == NULL)
 		{
 			_head = new Node;
-			_head->value = T;
+			_head->value = value;
 		}
 		else if (_head->previous == NULL)
 		{
 			_head->previous = new Node;
-			_head->previous->value = T;
+			_head->previous->value = value;
 			_head->previous->next = _head;
 			_head = _head->previous;
 		}
 		else
 		{
 			_head->previous->next = new Node;
-			_head->previous->next->value = T;
+			_head->previous->next->value = value;
 			_head->previous->next->next = _head;
 			_head->previous->next->previous = _head->previous;
 		}
@@ -53,12 +54,45 @@ public:
 		}
 		return NULL;
 	}
+
+	void dblist_print(void)
+	{
+		Node *lst = _head;
+		while (lst)
+		{
+			cout << lst->value;
+			if (lst->next)
+				cout << " - ";
+			lst = lst->next;
+		}
+		cout << endl;
+	}
+
+	void dblistadd_back(T value)
+	{
+		if (_head == NULL)
+		{
+			_head = new Node;
+			_head->value = value;
+		}
+		Node *lst = _head;
+		while (lst->next)
+			lst = lst->next;
+		lst->next = new Node;
+		lst->next->value = value;
+	}
+
+	void dblistadd_after(Node *node, T value)
+	{
+		if (_head == NULL)
+			return ;
+		Node *lst = _head;
+		while (lst != node && lst != NULL)
+			lst = lst->next;
+		if (lst == NULL)
+			return ;
+		Node *saver = lst->next;
+		lst->next = new Node;
+		lst->next->value = value;
+	}
 };
-
-DbList<void>::DbList(void)
-{
-}
-
-DbList<void>::~DbList()
-{
-}
