@@ -74,12 +74,14 @@ public:
 		{
 			_head = new Node;
 			_head->value = value;
+			return ;
 		}
 		Node *lst = _head;
 		while (lst->next)
 			lst = lst->next;
 		lst->next = new Node;
 		lst->next->value = value;
+		lst->next->previous = lst;
 	}
 
 	void dblistadd_after(Node *node, T value)
@@ -94,5 +96,55 @@ public:
 		Node *saver = lst->next;
 		lst->next = new Node;
 		lst->next->value = value;
+		lst->next->next = saver;
+		lst->next->previous = lst;
+		if (saver)
+			saver->previous = lst->next;
+	}
+
+	void dblist_delone(Node *node)
+	{
+		if (!node)
+			return ;
+		Node *lst = _head;
+		while (lst != NULL && lst->next != node)
+			lst = lst->next;
+		if (lst == NULL)
+			return ;
+		Node *saver = lst->next->next;
+		delete lst->next;
+		if (saver)
+			saver->previous = lst;
+		lst->next = saver;
+	}
+
+	void dblist_dellast(void)
+	{
+		Node *lst = _head;
+		if (lst != NULL && lst->next == NULL)
+		{
+			delete _head;
+			_head = NULL;
+			return ;
+		}
+		while (lst != NULL && lst->next->next != NULL)
+			lst = lst->next;
+		if (lst == NULL)
+			return ;
+		delete lst->next;
+		lst->next = NULL;
+	}
+
+	void dblist_clear(void)
+	{
+		Node *lst = _head;
+		Node *tmp;
+		while (lst)
+		{
+			tmp = lst->next;
+			delete lst;
+			lst = tmp;
+		}
+		_head = NULL;
 	}
 };
