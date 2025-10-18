@@ -6,10 +6,6 @@ template <typename T>
 class DbList
 {
 public:
-	class	Node;
-private:
-	Node	*_head = NULL;
-public:
 	class Node
 	{
 	public:
@@ -17,35 +13,38 @@ public:
 		Node	*previous = NULL;
 		Node	*next = NULL;
 	};
+
+	Node	*head = NULL;
+
 	DbList(void){}
 	~DbList(){}
 
 	void dblistadd_front(T value)
 	{
-		if (_head == NULL)
+		if (head == NULL)
 		{
-			_head = new Node;
-			_head->value = value;
+			head = new Node;
+			head->value = value;
 		}
-		else if (_head->previous == NULL)
+		else if (head->previous == NULL)
 		{
-			_head->previous = new Node;
-			_head->previous->value = value;
-			_head->previous->next = _head;
-			_head = _head->previous;
+			head->previous = new Node;
+			head->previous->value = value;
+			head->previous->next = head;
+			head = head->previous;
 		}
 		else
 		{
-			_head->previous->next = new Node;
-			_head->previous->next->value = value;
-			_head->previous->next->next = _head;
-			_head->previous->next->previous = _head->previous;
+			head->previous->next = new Node;
+			head->previous->next->value = value;
+			head->previous->next->next = head;
+			head->previous->next->previous = head->previous;
 		}
 	}
 
 	Node *find(T value)
 	{
-		Node *lst = _head;
+		Node *lst = head;
 		while (lst)
 		{
 			if (lst->value == value)
@@ -57,7 +56,7 @@ public:
 
 	void dblist_print(void)
 	{
-		Node *lst = _head;
+		Node *lst = head;
 		while (lst)
 		{
 			cout << lst->value;
@@ -70,13 +69,13 @@ public:
 
 	void dblistadd_back(T value)
 	{
-		if (_head == NULL)
+		if (head == NULL)
 		{
-			_head = new Node;
-			_head->value = value;
+			head = new Node;
+			head->value = value;
 			return ;
 		}
-		Node *lst = _head;
+		Node *lst = head;
 		while (lst->next)
 			lst = lst->next;
 		lst->next = new Node;
@@ -86,9 +85,9 @@ public:
 
 	void dblistadd_after(Node *node, T value)
 	{
-		if (_head == NULL)
+		if (head == NULL)
 			return ;
-		Node *lst = _head;
+		Node *lst = head;
 		while (lst != node && lst != NULL)
 			lst = lst->next;
 		if (lst == NULL)
@@ -106,7 +105,7 @@ public:
 	{
 		if (!node)
 			return ;
-		Node *lst = _head;
+		Node *lst = head;
 		while (lst != NULL && lst->next != node)
 			lst = lst->next;
 		if (lst == NULL)
@@ -120,11 +119,11 @@ public:
 
 	void dblist_dellast(void)
 	{
-		Node *lst = _head;
+		Node *lst = head;
 		if (lst != NULL && lst->next == NULL)
 		{
-			delete _head;
-			_head = NULL;
+			delete head;
+			head = NULL;
 			return ;
 		}
 		while (lst != NULL && lst->next->next != NULL)
@@ -137,7 +136,7 @@ public:
 
 	void dblist_clear(void)
 	{
-		Node *lst = _head;
+		Node *lst = head;
 		Node *tmp;
 		while (lst)
 		{
@@ -145,6 +144,6 @@ public:
 			delete lst;
 			lst = tmp;
 		}
-		_head = NULL;
+		head = NULL;
 	}
 };
