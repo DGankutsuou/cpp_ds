@@ -13,6 +13,8 @@ int main(void)
     Dblst<int>::Node *node = list.find(42);
     Dblst<int>::Node *node2 = list.find(2005);
     list.add_after(node2, 25);
+    cout << "at index 3: " << list.get_node(3)->value << endl;
+    cout << "at index 2: " << list.at(2) << endl;
     if (node)
         cout << node->next->value << endl;
     if (node2)

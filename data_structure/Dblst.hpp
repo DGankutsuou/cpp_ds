@@ -185,4 +185,36 @@ public:
 		if (tmp != NULL)
 			head = tmp->previous;
 	}
+
+	Node *get_node(int index)
+	{
+		if (index >= _size || index < 0)
+			return NULL;
+		Node *lst = head;
+		int i = 0;
+		while (lst)
+		{
+			if (i == index)
+				return lst;
+			lst = lst->next;
+			i++;
+		}
+		return NULL;
+	}
+
+	T at(int index)
+	{
+		if (index >= _size || index < 0)
+			return (T)0;
+		Node *lst = head;
+		int i = 0;
+		while (lst)
+		{
+			if (i == index)
+				return lst->value;
+			lst = lst->next;
+			i++;
+		}
+		return (T)0;
+	}
 };
