@@ -25,6 +25,10 @@ int main(void)
     list.dblist_clear();
     list.dblist_print();
     list.dblistadd_back(1337);
+    list.dblistadd_back(42);
+    list.dblistadd_back(21);
+    list.dblist_print();
+    list.dblist_delfirst();
     list.dblist_print();
     return (0);
 }

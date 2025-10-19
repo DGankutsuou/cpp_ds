@@ -21,25 +21,13 @@ public:
 
 	void dblistadd_front(T value)
 	{
-		if (head == NULL)
-		{
-			head = new Node;
-			head->value = value;
-		}
-		else if (head->previous == NULL)
-		{
-			head->previous = new Node;
-			head->previous->value = value;
-			head->previous->next = head;
-			head = head->previous;
-		}
-		else
-		{
-			head->previous->next = new Node;
-			head->previous->next->value = value;
-			head->previous->next->next = head;
-			head->previous->next->previous = head->previous;
-		}
+		Node *node = new Node;
+		node->value = value;
+		node->previous = NULL;
+		node->next = head;
+		if (head != NULL)
+			head->previous = node;
+		head = node;
 	}
 
 	Node *find(T value)
@@ -85,7 +73,7 @@ public:
 
 	void dblistadd_after(Node *node, T value)
 	{
-		if (head == NULL)
+		if (head == NULL || node == NULL)
 			return ;
 		Node *lst = head;
 		while (lst != node && lst != NULL)
@@ -103,18 +91,20 @@ public:
 
 	void dblist_delone(Node *node)
 	{
-		if (!node)
+		if (!node || !head)
 			return ;
 		Node *lst = head;
-		while (lst != NULL && lst->next != node)
+		while (lst != NULL && lst != node)
 			lst = lst->next;
 		if (lst == NULL)
 			return ;
-		Node *saver = lst->next->next;
-		delete lst->next;
-		if (saver)
-			saver->previous = lst;
-		lst->next = saver;
+		if (node == head)
+			head = node->next;
+		if (node->next != NULL)
+			node->next->previous = node->previous;
+		if (node->previous != NULL)
+			node->previous->next = node->next;
+		delete node;
 	}
 
 	void dblist_dellast(void)
@@ -132,6 +122,18 @@ public:
 			return ;
 		delete lst->next;
 		lst->next = NULL;
+	}
+
+	void dblist_delfirst(void)
+	{
+		// dblist_delone(head);
+		if (head == NULL)
+			return ;
+		Node *tmp = head;
+		head = head->next;
+		if (head != NULL)
+			head->previous = NULL;
+		delete tmp;
 	}
 
 	void dblist_clear(void)
