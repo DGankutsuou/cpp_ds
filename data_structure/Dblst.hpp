@@ -217,4 +217,26 @@ public:
 		}
 		return (T)0;
 	}
+
+	bool update_item(int index, T value)
+	{
+		Node *node = get_node(index);
+		if (node != nullptr)
+		{
+			node->value = value;
+			return true;
+		}
+		return false;
+	}
+
+	bool add_after(int index, T value)
+	{
+		Node *node = get_node(index);
+		if (node != nullptr)
+		{
+			add_after(node, value);
+			return true;
+		}
+		return false;
+	}
 };
