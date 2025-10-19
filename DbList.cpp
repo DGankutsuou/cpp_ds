@@ -17,6 +17,7 @@ int main(void)
         cout << node->next->value << endl;
     if (node2)
         cout << node2->previous->value << endl;
+    cout << "size: " << list.dblist_size() << endl;
     list.dblist_print();
     list.dblist_delone(node);
     list.dblist_print();

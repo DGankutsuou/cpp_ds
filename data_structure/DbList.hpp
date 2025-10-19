@@ -5,6 +5,8 @@ using namespace std;
 template <typename T>
 class DbList
 {
+protected:
+	int _size = 0;
 public:
 	class Node
 	{
@@ -28,6 +30,7 @@ public:
 		if (head != NULL)
 			head->previous = node;
 		head = node;
+		_size++;
 	}
 
 	Node *find(T value)
@@ -69,6 +72,7 @@ public:
 		lst->next = new Node;
 		lst->next->value = value;
 		lst->next->previous = lst;
+		_size++;
 	}
 
 	void dblistadd_after(Node *node, T value)
@@ -87,6 +91,7 @@ public:
 		lst->next->previous = lst;
 		if (saver)
 			saver->previous = lst->next;
+		_size++;
 	}
 
 	void dblist_delone(Node *node)
@@ -105,23 +110,26 @@ public:
 		if (node->previous != NULL)
 			node->previous->next = node->next;
 		delete node;
+		_size--;
 	}
 
 	void dblist_dellast(void)
 	{
+		if (head == NULL)
+			return ;
 		Node *lst = head;
 		if (lst != NULL && lst->next == NULL)
 		{
 			delete head;
 			head = NULL;
+			_size--;
 			return ;
 		}
-		while (lst != NULL && lst->next->next != NULL)
+		while (lst->next != NULL && lst->next->next != NULL)
 			lst = lst->next;
-		if (lst == NULL)
-			return ;
 		delete lst->next;
 		lst->next = NULL;
+		_size--;
 	}
 
 	void dblist_delfirst(void)
@@ -134,6 +142,7 @@ public:
 		if (head != NULL)
 			head->previous = NULL;
 		delete tmp;
+		_size--;
 	}
 
 	void dblist_clear(void)
@@ -144,8 +153,14 @@ public:
 		{
 			tmp = lst->next;
 			delete lst;
+			_size--;
 			lst = tmp;
 		}
 		head = NULL;
+	}
+
+	int dblist_size(void)
+	{
+		return (_size);
 	}
 };
