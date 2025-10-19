@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename T>
-class DbList
+class Dblst
 {
 protected:
 	int _size = 0;
@@ -18,10 +18,10 @@ public:
 
 	Node	*head = NULL;
 
-	DbList(void){}
-	~DbList(){}
+	Dblst(void){}
+	~Dblst(){}
 
-	void dblistadd_front(T value)
+	void add_front(T value)
 	{
 		Node *node = new Node;
 		node->value = value;
@@ -45,7 +45,7 @@ public:
 		return NULL;
 	}
 
-	void dblist_print(void)
+	void print(void)
 	{
 		Node *lst = head;
 		while (lst)
@@ -58,7 +58,7 @@ public:
 		cout << endl;
 	}
 
-	void dblistadd_back(T value)
+	void add_back(T value)
 	{
 		if (head == NULL)
 		{
@@ -75,7 +75,7 @@ public:
 		_size++;
 	}
 
-	void dblistadd_after(Node *node, T value)
+	void add_after(Node *node, T value)
 	{
 		if (head == NULL || node == NULL)
 			return ;
@@ -94,7 +94,7 @@ public:
 		_size++;
 	}
 
-	void dblist_delone(Node *node)
+	void delone(Node *node)
 	{
 		if (!node || !head)
 			return ;
@@ -113,7 +113,7 @@ public:
 		_size--;
 	}
 
-	void dblist_dellast(void)
+	void dellast(void)
 	{
 		if (head == NULL)
 			return ;
@@ -132,9 +132,9 @@ public:
 		_size--;
 	}
 
-	void dblist_delfirst(void)
+	void delfirst(void)
 	{
-		// dblist_delone(head);
+		// delone(head);
 		if (head == NULL)
 			return ;
 		Node *tmp = head;
@@ -145,7 +145,7 @@ public:
 		_size--;
 	}
 
-	void dblist_clear(void)
+	void clear(void)
 	{
 		Node *lst = head;
 		Node *tmp;
@@ -159,8 +159,30 @@ public:
 		head = NULL;
 	}
 
-	int dblist_size(void)
+	int size(void)
 	{
 		return (_size);
+	}
+
+	bool is_empty(void)
+	{
+		return (!_size);
+	}
+
+	void reverse(void)
+	{
+		if (head == NULL || head->next == NULL)
+			return ;
+		Node *lst = head;
+		Node *tmp;
+		while (lst)
+		{
+			tmp = lst->previous;
+			lst->previous = lst->next;
+			lst->next = tmp;
+			lst = lst->previous;
+		}
+		if (tmp != NULL)
+			head = tmp->previous;
 	}
 };
