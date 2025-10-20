@@ -17,5 +17,12 @@ int main(void)
     queue.pop();
     queue.print();
     cout << "queue size: " << queue.size() << endl;
+    queue.add_after(0, "Ilyass");
+    queue.add_back("Yassine");
+    queue.add_front("Hicham");
+    queue.reverse();
+    queue.print();
+    queue.update_item(3, "Ayman");
+    cout << "at 3: " << queue.at(3) << endl;
     return (0);
 }

@@ -38,4 +38,39 @@ public:
     {
         return (_list.at(_list.size() - 1));
     }
+
+    T at(int index)
+    {
+        return _list.at(index);
+    }
+
+    void clear(void)
+    {
+        _list.clear();
+    }
+
+    void reverse(void)
+    {
+        _list.reverse();
+    }
+
+    void update_item(int index, T value)
+    {
+        _list.update_item(index, value);
+    }
+
+    void add_after(int index, T value)
+    {
+        _list.add_after(index, value);
+    }
+
+    void add_front(T value)
+    {
+        _list.add_front(value);
+    }
+
+    void add_back(T value)
+    {
+        _list.add_back(value);
+    }
 };
