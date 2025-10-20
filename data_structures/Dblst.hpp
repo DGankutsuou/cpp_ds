@@ -64,6 +64,7 @@ public:
 		{
 			head = new Node;
 			head->value = value;
+			_size++;
 			return ;
 		}
 		Node *lst = head;

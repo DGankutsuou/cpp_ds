@@ -1,5 +1,5 @@
 #include <iostream>
-#include "data_structure/Dblst.hpp"
+#include "data_structures/Dblst.hpp"
 using namespace std;
 
 int main(void)
