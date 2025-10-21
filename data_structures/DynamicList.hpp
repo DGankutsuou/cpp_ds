@@ -147,7 +147,7 @@ public:
 
     bool insert_at(int index, T value)
     {
-        if (index < 0 || index >= _size)
+        if (index < 0 || index > _size)
             return false;
         T *new_arr = new T[_size + 1];
         for (int i = 0; i < index; i++)
@@ -163,5 +163,29 @@ public:
         _array = new_arr;
         ++_size;
         return true;
+    }
+
+    bool insert_front(T val)
+    {
+        return (insert_at(0, val));
+    }
+
+    bool insert_back(T val)
+    {
+        return (insert_at(_size, val));
+    }
+
+    bool insert_before(int index, T val)
+    {
+        if (index < 0)
+            return (insert_at(0, val));
+        return (insert_at(index - 1, val));
+    }
+
+    bool insert_after(int index, T val)
+    {
+        if (index >= _size)
+            return (insert_at(_size, val));
+        return (insert_at(index + 1, val));
     }
 };

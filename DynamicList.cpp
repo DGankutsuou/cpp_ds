@@ -23,6 +23,10 @@ int main(void)
     list.update_item(4, 2005);
     list.reverse();
     list.insert_at(2, 25);
+    list.insert_front(21);
+    list.insert_back(12);
+    list.insert_after(2, 6);
+    list.insert_before(2, 13);
     list.print();
     cout << "the size: " << list.size() << endl;
     cout << "at 1: " << list.at(1) << endl;
