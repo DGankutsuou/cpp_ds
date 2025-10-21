@@ -100,4 +100,24 @@ public:
         delete[] _array;  
         _array = new_arr; 
     }
+
+    void del_item(int index)
+    {
+        if (index >= _size || index < 0 || _size == 0)
+            return ;
+        T *new_arr = new T[_size - 1];
+        for (int i = 0; i < _size; i++)
+        {
+            if (i != index)
+            {
+                if (i > index)
+                    new_arr [i - 1] = _array[i];
+                else
+                    new_arr [i] = _array[i];
+            }
+        }
+        delete[] _array;
+        _array = new_arr;
+        _size--;
+    }
 };

@@ -7,6 +7,7 @@ int main(void)
     list.update_item(0, 21);
     list.update_item(1, 42);
     list.update_item(2, 1337);
+    list.del_item(1);
     list.reverse();
     list.print();
     list.reverse();
