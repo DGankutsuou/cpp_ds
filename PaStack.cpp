@@ -1,8 +1,9 @@
+#include "data_structures/PaDLStack.hpp"
 #include "data_structures/PaStack.hpp"
 
 int main(void)
 {
-    PaStack <string> stack;
+    PaDLStack <string> stack;
 
     stack.push("Ayman");
     stack.push("Jesus");
