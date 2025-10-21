@@ -52,7 +52,7 @@ public:
 		{
 			cout << lst->value;
 			if (lst->next)
-				cout << " - ";
+				cout << " , ";
 			lst = lst->next;
 		}
 		cout << endl;
