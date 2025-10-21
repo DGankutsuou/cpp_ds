@@ -101,23 +101,67 @@ public:
         _array = new_arr; 
     }
 
-    void del_item(int index)
+    bool del_item(int index)
     {
         if (index >= _size || index < 0 || _size == 0)
-            return ;
+            return false;
         T *new_arr = new T[_size - 1];
-        for (int i = 0; i < _size; i++)
+        for (int i = 0; i < index; i++)
         {
-            if (i != index)
-            {
-                if (i > index)
-                    new_arr [i - 1] = _array[i];
-                else
-                    new_arr [i] = _array[i];
-            }
+            new_arr [i] = _array[i];
+        }
+        for (int i = index + 1; i < _size; i++)
+        {
+            new_arr [i - 1] = _array[i];
         }
         delete[] _array;
         _array = new_arr;
         _size--;
+        return (true);
+    }
+
+    bool del_first(void)
+    {
+        return (del_item(0));
+    }
+
+    bool del_last(void)
+    {
+        return (del_item(_size - 1));
+    }
+
+    int find(T value)
+    {
+        for (int i = 0; i < _size; i++)
+        {
+            if (_array[i] == value)
+                return (i);
+        }
+        return (-1);
+    }
+
+    bool del_val(T val)
+    {
+        return (del_item(find(val)));
+    }
+
+    bool insert_at(int index, T value)
+    {
+        if (index < 0 || index >= _size)
+            return false;
+        T *new_arr = new T[_size + 1];
+        for (int i = 0; i < index; i++)
+        {
+            new_arr[i] = _array[i];
+        }
+        new_arr[index] = value;
+        for (int i = index; i < _size; i++)
+        {
+            new_arr[i + 1] = _array[i];
+        }
+        delete[] _array;
+        _array = new_arr;
+        ++_size;
+        return true;
     }
 };
