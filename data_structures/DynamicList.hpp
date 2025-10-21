@@ -10,11 +10,14 @@ protected:
     T *_array{NULL};
     int _size = 0;
 public:
+    DynamicList(void)
+    {
+        _size = 0;
+    }
+
     DynamicList(int s)
     {
-        if (s < 0)
-            s = 0;
-        else
+        if (s > 0)
         {
             _size = s;
             _array = new T[s];
