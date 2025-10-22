@@ -23,7 +23,7 @@ public:
     {
         if (_changes.size() > 0)
         {
-            _undone.push(_changes.top());
+            _undone.push(_value);
             _value = _changes.top();
             _changes.pop();
         }
