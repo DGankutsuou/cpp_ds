@@ -12,5 +12,13 @@ int main(void)
 
     VIPLine.print_info();
     VIPLine.print_tickets_ltr();
+    VIPLine.print_tickets_rtl();
+    VIPLine.print_all_tickets();
+    VIPLine.serve_next();
+    VIPLine.serve_next();
+    VIPLine.print_info();
+    VIPLine.print_tickets_ltr();
+    VIPLine.print_tickets_rtl();
+    VIPLine.print_all_tickets();
     return 0;
 }
