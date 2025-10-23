@@ -125,6 +125,7 @@ public:
             cout << stc.top();
             if (i < len - 1)
                 cout << " <-- ";
+            stc.pop();
         }
         cout << endl;
     }
