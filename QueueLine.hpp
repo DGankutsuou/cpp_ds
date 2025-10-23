@@ -47,6 +47,20 @@ public:
         cout << "__________________________________________\n" << endl;
     }
 
+    void print_tickets_ltr(void)
+    {
+        queue <Ticket> tmp;
+        tmp = _line;
+        while (tmp.size())
+        {
+            cout << tmp.front().number;
+            tmp.pop();
+            if (tmp.size())
+                cout << " --> ";
+        }
+        cout << endl;
+    }
+
     void print_tickets_rtl(void)
     {
         queue <Ticket> tmp;
@@ -54,9 +68,9 @@ public:
         while (tmp.size())
         {
             cout << tmp.front().number;
-
+            tmp.pop();
             if (tmp.size())
-                cout << " <-- ";
+                cout << " --> ";
         }
         cout << endl;
     }

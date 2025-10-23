@@ -11,5 +11,6 @@ int main(void)
     VIPLine.issue_ticket();
 
     VIPLine.print_info();
+    VIPLine.print_tickets_ltr();
     return 0;
 }
